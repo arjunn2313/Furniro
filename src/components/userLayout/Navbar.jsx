@@ -94,7 +94,7 @@ const Navbar = () => {
       <div
         className={`${
           isMobileMenuOpen ? "block" : "hidden"
-        } md:hidden bg-gray-100 border-t border-gray-200 shadow-lg`}
+        } md:hidden bg-yellow-50 border-t border-gray-200 shadow-lg`}
       >
         <div className="px-4 pt-2 pb-3 space-y-1 text-center">
           <Link
