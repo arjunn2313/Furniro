@@ -61,7 +61,9 @@ export default function OurProducts() {
     <section className="container mx-auto p-5 sm:p-10 mt-5">
       {/* Title */}
       <div className="text-center space-y-1 md:space-y-3">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Products</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 font-serif">
+          Our Products
+        </h2>
       </div>
 
       {/* Product Grid */}
@@ -76,6 +78,14 @@ export default function OurProducts() {
             image={product.image}
           />
         ))}
+      </div>
+
+      {/* Load more */}
+
+      <div className="text-center py-5 mt-5">
+        <button className="px-6 py-3 border border-yellow-500 text-yellow-500 rounded-lg shadow-md hover:bg-yellow-50 hover:shadow-lg transition duration-300 ease-in-out transform hover:translate-y-[-2px] hover:scale-105 active:translate-y-1">
+          Show More
+        </button>
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex space-x-8 text-sm">
-            <Link to="/Furniro" className="text-gray-700 hover:text-black font-medium">
+            <Link to="/Furniro/" className="text-gray-700 hover:text-black font-medium">
               Home
             </Link>
             <Link
@@ -57,16 +57,16 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="hidden md:flex space-x-4 items-center">
-            <Link to="" className="text-gray-700 hover:text-black">
+            <Link to="/profile" className="text-gray-700 hover:text-black">
               <FaUser className="h-5 w-5" />
             </Link>
             {/* <Link to="" className="text-gray-700 hover:text-black">
               <FaSearch className="h-5 w-5" />
             </Link> */}
-            <Link to="" className="text-gray-700 hover:text-black">
+            <Link to="/wishlist" className="text-gray-700 hover:text-black">
               <FaHeart className="h-5 w-5" />
             </Link>
-            <Link to="" className="text-gray-700 hover:text-black">
+            <Link to="/cart" className="text-gray-700 hover:text-black">
               <FaShoppingCart className="h-5 w-5" />
             </Link>
           </div>
@@ -98,7 +98,7 @@ const Navbar = () => {
       >
         <div className="px-4 pt-2 pb-3 space-y-1 text-center">
           <Link
-            to="/"
+            to="/Furniro"
             className="block py-2 text-gray-700 hover:text-black hover:bg-gray-200 rounded-md"
             onClick={toggleMobileMenu}
           >

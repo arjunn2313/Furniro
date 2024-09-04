@@ -20,7 +20,7 @@ export default function Featured() {
     <section className="container mx-auto p-10">
       {/* Title */}
       <div className="text-center space-y-1 md:space-y-3">
-        <h2 className="text-3xl font-bold text-gray-800">Browse The Range</h2>
+        <h2 className="text-3xl font-bold text-gray-800 font-serif">Browse The Range</h2>
         <p className="text-gray-600 text-sm md:text-base">
           Explore our curated selection of stylish and functional furniture for every room.
         </p>
