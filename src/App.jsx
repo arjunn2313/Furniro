@@ -16,7 +16,7 @@ export default function App() {
       <>
         {/* User Routes */}
         <Route element={<UserLayout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/Furniro" element={<Home />} />
         </Route>
 
         {/* Admin Routes */}
