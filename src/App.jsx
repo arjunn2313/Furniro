@@ -9,6 +9,7 @@ import Home from "./pages/user/Home/Home";
 import Dashboard from "./pages/admin/Dashboard/Dashboard";
 import NotFound from "./pages/user/NotFound/NotFound";
 import UserLayout from "./components/userLayout/UserLayout";
+import Shop from "./pages/user/Shop/Shop";
 
 export default function App() {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ export default function App() {
         {/* User Routes */}
         <Route element={<UserLayout />}>
           <Route path="/Furniro" element={<Home />} />
+          <Route path="shop" element={<Shop />} />
         </Route>
 
         {/* Admin Routes */}
