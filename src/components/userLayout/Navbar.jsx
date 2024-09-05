@@ -36,19 +36,19 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/shop"
+              to="/Furniro/shop"
               className="text-gray-700 hover:text-black font-medium"
             >
               Shop
             </Link>
             <Link
-              to="/about"
+              to="/Furniro/about"
               className="text-gray-700 hover:text-black font-medium"
             >
               About
             </Link>
             <Link
-              to="/contact"
+              to="/Furniro/contact"
               className="text-gray-700 hover:text-black font-medium"
             >
               Contact

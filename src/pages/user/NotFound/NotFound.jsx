@@ -11,7 +11,7 @@ export default function NotFound() {
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
         <Link
-          to="/"
+          to="/Furniro/"
           className="mt-6 inline-block px-6 py-3 text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors"
         >
           Back to Home

@@ -24,12 +24,12 @@ export default function App() {
         {/* User Routes */}
         <Route element={<UserLayout />}>
           <Route path="/Furniro" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/Furniro/shop" element={<Shop />} />
+          <Route path="/Furniro/about" element={<AboutUs />} />
+          <Route path="/Furniro/contact" element={<Contact />} />
+          <Route path="/Furniro/profile" element={<Profile />} />
+          <Route path="/Furniro/wishlist" element={<Wishlist />} />
+          <Route path="/Furniro/cart" element={<Cart />} />
         </Route>
 
         {/* Admin Routes */}
