@@ -3,6 +3,7 @@ import BackgroundSection from "../../../components/background/BackgroundSection"
 import { FiFilter, FiGrid, FiList } from 'react-icons/fi';
 import ProductCard from "../../../components/Product/ProductCard";
 import { products } from "../../../components/home/OurProducts";
+import Features from "../../../components/Product/FeaturesCard";
 
 export default function Shop() {
   return (
@@ -87,6 +88,8 @@ export default function Shop() {
         </button>
       </div>
     </section>
+
+    <Features/>
     </section>
   );
 }
