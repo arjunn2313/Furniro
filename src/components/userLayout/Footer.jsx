@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-8 px-4  ">
-      <div className="container mx-auto">
+    <footer className="bg-gray-100 py-8 px-4">
+      <div className="container mx-auto px-5">
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row justify-between md:items-start space-y-6 md:space-y-0  sm:px-10">
+        <div className="flex flex-col md:flex-row justify-between md:items-start space-y-6 md:space-y-0">
           {/* Logo and Address */}
           <div className="md:w-1/3">
             <h2 className="font-bold text-2xl mb-4 text-gray-900">Funiro.</h2>
@@ -15,9 +15,10 @@ const Footer = () => {
             </address>
           </div>
 
-          {/* Links */}
-          <div className="flex justify-between md:justify-start md:w-2/3 space-x-16">
-            <div>
+          {/* Links, Help, and Newsletter */}
+          <div className="flex flex-col md:flex-row md:space-x-16 space-y-6 md:space-y-0 md:w-2/3">
+            {/* Links */}
+            <div className="w-full md:w-1/3">
               <h3 className="text-gray-500 font-semibold mb-4">Links</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>Home</li>
@@ -28,7 +29,7 @@ const Footer = () => {
             </div>
 
             {/* Help */}
-            <div>
+            <div className="w-full md:w-1/3">
               <h3 className="text-gray-500 font-semibold mb-4">Help</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>Payment Options</li>
@@ -38,13 +39,13 @@ const Footer = () => {
             </div>
 
             {/* Newsletter */}
-            <div className="w-full md:w-auto ">
+            <div className="w-full md:w-1/3">
               <h3 className="text-gray-500 font-semibold mb-4">Newsletter</h3>
-              <div className="flex border-b border-gray-400">
+              <div className="flex flex-col md:flex-row border-b border-gray-400">
                 <input
                   type="email"
                   placeholder="Enter Your Email Address"
-                  className="p-2 flex-grow focus:outline-none text-gray-700"
+                  className="p-2 flex-grow focus:outline-none text-gray-700 mb-2 md:mb-0 md:mr-2"
                 />
                 <button className="bg-black text-white px-4 py-2 hover:bg-gray-800">
                   SUBSCRIBE
