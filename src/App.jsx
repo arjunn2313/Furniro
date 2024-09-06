@@ -21,13 +21,19 @@ import Login from "./pages/user/Auth/Signin";
 import OTPInput from "./components/Auth/OtpInput";
 import AdminLayout from "./components/AdminLayout.jsx/AdminLayout";
 import ProductList from "./pages/admin/Product/ProductList";
+import AddProductForm from "./pages/admin/Product/ProductForm";
+import OrdersTable from "./pages/admin/Orders/OrdersList";
+import StockTable from "./pages/admin/Stock/StockTable";
+import ProductView from "./pages/admin/Product/SingleProductView";
+import EditProductForm from "./pages/admin/Product/EditProduct";
+ 
 
 export default function App() {
   const router = createHashRouter(
     createRoutesFromElements(
       <>
         {/* User Routes */}
-        <Route element={<UserLayout />}>
+        <Route  element={<UserLayout />}>
           <Route path="/Furniro" element={<Home />} />
           <Route path="/Furniro/shop" element={<Shop />} />
           <Route path="/Furniro/shop/:id" element={<ProductPage />} />
@@ -45,6 +51,13 @@ export default function App() {
         <Route element={<AdminLayout />}>
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/product" element={<ProductList />} />
+        <Route path="/admin/product/add" element={<AddProductForm />} />
+        <Route path="/admin/product/:id" element={<ProductView />} />
+        <Route path="/admin/product/:id/edit" element={<EditProductForm />} />
+        <Route path="/admin/stock" element={<StockTable />} />
+        {/* <Route path="/admin/product/add" element={<AddProductForm />} /> */}
+        <Route path="/admin/orders" element={<OrdersTable />} />
+        {/* <Route path="/admin/product/add" element={<AddProductForm />} /> */}
         </Route>
         
         {/* Fallback route */}

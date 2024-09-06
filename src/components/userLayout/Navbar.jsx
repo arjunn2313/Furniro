@@ -15,8 +15,7 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  // Helper function to check if the path is active
+ 
   const isActive = (path) => location.pathname === path;
 
   return (
