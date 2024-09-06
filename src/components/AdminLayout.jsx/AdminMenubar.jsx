@@ -32,46 +32,38 @@ const Sidebar = () => {
         </div>
         <nav className="mt-10">
           <ul>
-            <li className="p-4 hover:bg-gray-700">
-              <NavLink
-                to="/admin/dashboard"
-                className={({ isActive }) =>
-                  isActive ? "text-yellow-500 font-bold" : "text-white"
-                }
-              >
-                Dashboard
-              </NavLink>
-            </li>
-            <li className="p-4 hover:bg-gray-700">
-              <NavLink
-                to="/admin/product"
-                className={({ isActive }) =>
-                  isActive ? "text-yellow-500 font-bold" : "text-white"
-                }
-              >
-                Product
-              </NavLink>
-            </li>
-            <li className="p-4 hover:bg-gray-700">
-              <NavLink
-                to="/admin/stock"
-                className={({ isActive }) =>
-                  isActive ? "text-yellow-500 font-bold" : "text-white"
-                }
-              >
-                Stock
-              </NavLink>
-            </li>
-            <li className="p-4 hover:bg-gray-700">
-              <NavLink
-                to="/admin/orders"
-                className={({ isActive }) =>
-                  isActive ? "text-yellow-500 font-bold" : "text-white"
-                }
-              >
-                Orders
-              </NavLink>
-            </li>
+            <NavLink
+              to="/admin/dashboard"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-white"
+              }
+            >
+              <li className="p-4 hover:bg-gray-700">Dashboard</li>
+            </NavLink>
+            <NavLink
+              to="/admin/product"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-white"
+              }
+            >
+              <li className="p-4 hover:bg-gray-700">Product</li>
+            </NavLink>
+            <NavLink
+              to="/admin/stock"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-white"
+              }
+            >
+              <li className="p-4 hover:bg-gray-700">Stock</li>
+            </NavLink>
+            <NavLink
+              to="/admin/orders"
+              className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-bold" : "text-white"
+              }
+            >
+              <li className="p-4 hover:bg-gray-700">Orders</li>
+            </NavLink>
           </ul>
         </nav>
       </aside>
@@ -88,6 +80,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
-  

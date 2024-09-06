@@ -10,11 +10,11 @@ const Navbar = () => {
           placeholder="Search"
           className="p-2 border border-gray-300 rounded-lg"
         />
-        <img
+        {/* <img
           src="https://via.placeholder.com/32"
           alt="Profile"
           className="rounded-full w-8 h-8"
-        />
+        /> */}
       </div>
     </header>
   );

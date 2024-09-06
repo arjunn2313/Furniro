@@ -1,24 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaSave, FaTrash } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
+import Spinner from "../../../components/pagination/Spinner";
+import ErrorMessage from "../../../components/pagination/CustomError";
+import { fetchProductById, updateProductById } from "../../../api/productApi"; // Import API methods
+import axiosInstance, { API_BASE_URL } from "../../../config/axiosConfig";
+import axios from "axios";
 
 const EditProductForm = () => {
-  // Sample product data (replace with real data)
-  const [product, setProduct] = useState({
-    id: "101",
-    name: "Modern Wooden Chair",
-    description:
-      "This is a beautiful modern wooden chair with comfortable seating and a sleek design. Perfect for any living room or office space.",
-    price: 150.0,
-    stock: 10,
-    category: "Furniture",
-    images: [
-      "/images/chair1.jpg",
-      "/images/chair2.jpg",
-      "/images/chair3.jpg", // Example image URLs
-    ],
-  });
-  const [mainImage, setMainImage] = useState(product.images[0]);
-  const [imageFiles, setImageFiles] = useState([]);
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+  const [imageFiles, setImageFiles] = useState([]); // Track new images
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [mainImage, setMainImage] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetchProductById(productId);
+        setProduct(response.data);
+        setMainImage(response.data.images[0]);
+      } catch (err) {
+        setError("Failed to fetch product data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
+
+  if (loading) return <Spinner />;
+  if (error) return <ErrorMessage />;
+  if (!product) return <p>No product found.</p>;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,18 +47,40 @@ const EditProductForm = () => {
       setMainImage(URL.createObjectURL(e.target.files[0]));
     }
   };
-
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here (e.g., API call)
-    console.log("Updated product data:", product);
+    try {
+      const formData = new FormData();
+      formData.append("productName", product.productName);
+      formData.append("description", product.description);
+      formData.append("price", product.price);
+      formData.append("stock", product.stock);
+      formData.append("height", product.dimensions.height);
+      formData.append("length", product.dimensions.length);
+      formData.append("width", product.dimensions.width);
+      formData.append("brand", product.brand);
+      formData.append("category", product.category);
+
+      imageFiles.forEach((file) => {
+        formData.append("images", file);
+      });
+
+      const response = await updateProductById(productId, formData);
+
+      navigate("/admin/product");
+    } catch (err) {
+      setError("Failed to update product.");
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gray-100 p-3">
+      <div className="bg-white p-8 rounded-lg shadow-md max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <button className="text-blue-500 hover:text-blue-700 flex items-center">
+          <button
+            className="text-blue-500 hover:text-blue-700 flex items-center"
+            onClick={() => navigate(-1)}
+          >
             <FaArrowLeft className="mr-2" /> Back to Products
           </button>
           <button className="text-red-500 hover:text-red-700 flex items-center">
@@ -52,23 +90,24 @@ const EditProductForm = () => {
 
         <h2 className="text-3xl font-bold mb-6 text-gray-800">Edit Product</h2>
 
-        {/* Product Edit Form */}
         <form onSubmit={handleFormSubmit} className="space-y-6">
           <div className="md:flex md:space-x-6">
             {/* Product Image Gallery */}
             <div className="md:w-1/2">
               <img
-                src={mainImage}
-                alt={product.name}
+                src={`${API_BASE_URL}/${mainImage}`}
+                alt={product.productName}
                 className="w-full h-64 object-cover rounded-lg mb-4"
               />
               <div className="flex space-x-2 mb-4">
                 {product.images.map((image, index) => (
                   <img
                     key={index}
-                    src={image}
+                    src={`${API_BASE_URL}/${image}`}
                     alt={`Product ${index}`}
-                    className="w-20 h-20 object-cover rounded-lg cursor-pointer"
+                    className={`w-14 h-14 sm:w-20 sm:h-20 object-cover rounded-lg shadow-sm cursor-pointer transition-all duration-300 hover:scale-105 ${
+                      mainImage === image ? "border-2 border-yellow-500" : ""
+                    }`}
                     onClick={() => setMainImage(image)}
                   />
                 ))}
@@ -95,16 +134,16 @@ const EditProductForm = () => {
             <div className="md:w-1/2">
               <div className="mb-4">
                 <label
-                  htmlFor="name"
+                  htmlFor="productName"
                   className="block font-medium mb-2 text-gray-700"
                 >
                   Product Name
                 </label>
                 <input
-                  id="name"
-                  name="name"
+                  id="productName"
+                  name="productName"
                   type="text"
-                  value={product.name}
+                  value={product.productName}
                   onChange={handleInputChange}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter product name"
@@ -166,6 +205,82 @@ const EditProductForm = () => {
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter stock quantity"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="height"
+                    className="block font-medium mb-2 text-gray-700"
+                  >
+                    Height
+                  </label>
+                  <input
+                    id="height"
+                    name="height"
+                    type="number"
+                    value={product.dimensions.height}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter height"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="length"
+                    className="block font-medium mb-2 text-gray-700"
+                  >
+                    Length
+                  </label>
+                  <input
+                    id="length"
+                    name="length"
+                    type="number"
+                    value={product.dimensions.length}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter length"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="width"
+                    className="block font-medium mb-2 text-gray-700"
+                  >
+                    Width
+                  </label>
+                  <input
+                    id="width"
+                    name="width"
+                    type="number"
+                    value={product.dimensions.width}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter width"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="brand"
+                    className="block font-medium mb-2 text-gray-700"
+                  >
+                    Brand
+                  </label>
+                  <input
+                    id="brand"
+                    name="brand"
+                    type="text" // Corrected to text
+                    value={product.brand}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter brand"
                     required
                   />
                 </div>

@@ -34,17 +34,17 @@ export default function App() {
       <>
         {/* User Routes */}
         <Route  element={<UserLayout />}>
-          <Route path="/Furniro" element={<Home />} />
-          <Route path="/Furniro/shop" element={<Shop />} />
-          <Route path="/Furniro/shop/:id" element={<ProductPage />} />
-          <Route path="/Furniro/about" element={<AboutUs />} />
-          <Route path="/Furniro/contact" element={<Contact />} />
-          <Route path="/Furniro/profile" element={<Profile />} />
-          <Route path="/Furniro/wishlist" element={<Wishlist />} />
-          <Route path="/Furniro/cart" element={<Cart />} />
-          <Route path="/Furniro/signin" element={<Login />} />
-          <Route path="/Furniro/signup" element={<Signup />} />
-          <Route path="/Furniro/signup/otp" element={<OTPInput />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/:id" element={<ProductPage />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/otp" element={<OTPInput />} />
         </Route>
 
         {/* Admin Routes */}
@@ -52,8 +52,8 @@ export default function App() {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/product" element={<ProductList />} />
         <Route path="/admin/product/add" element={<AddProductForm />} />
-        <Route path="/admin/product/:id" element={<ProductView />} />
-        <Route path="/admin/product/:id/edit" element={<EditProductForm />} />
+        <Route path="/admin/product/:productId" element={<ProductView />} />
+        <Route path="/admin/product/:productId/edit" element={<EditProductForm />} />
         <Route path="/admin/stock" element={<StockTable />} />
         {/* <Route path="/admin/product/add" element={<AddProductForm />} /> */}
         <Route path="/admin/orders" element={<OrdersTable />} />

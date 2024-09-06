@@ -15,7 +15,7 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
- 
+
   const isActive = (path) => location.pathname === path;
 
   return (
@@ -23,23 +23,25 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <img
-              className="h-8 w-auto"
-              src="assets/Meubel House_Logos-05.png"
-              alt="Logo"
-            />
-            <span className="text-xl font-bold ml-2 text-gray-800">
-              Furniro
-            </span>
-          </div>
+          <Link to="/">
+            <div className="flex-shrink-0 flex items-center">
+              <img
+                className="h-8 w-auto"
+                src="assets/Meubel House_Logos-05.png"
+                alt="Logo"
+              />
 
+              <span className="text-xl font-bold ml-2 text-gray-800">
+                Furniro
+              </span>
+            </div>
+          </Link>
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex space-x-8 text-sm">
             <Link
-              to="/Furniro/"
+              to="/"
               className={`${
-                isActive("/Furniro/")
+                isActive("/")
                   ? "text-black border-b-2 border-yellow-500"
                   : "text-gray-700 hover:text-black"
               } font-medium pb-1`}
@@ -47,9 +49,9 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/Furniro/shop"
+              to="/shop"
               className={`${
-                isActive("/Furniro/shop")
+                isActive("/shop")
                   ? "text-black border-b-2 border-yellow-500"
                   : "text-gray-700 hover:text-black"
               } font-medium pb-1`}
@@ -57,9 +59,9 @@ const Navbar = () => {
               Shop
             </Link>
             <Link
-              to="/Furniro/about"
+              to="/about"
               className={`${
-                isActive("/Furniro/about")
+                isActive("/about")
                   ? "text-black border-b-2 border-yellow-500"
                   : "text-gray-700 hover:text-black"
               } font-medium pb-1`}
@@ -67,9 +69,9 @@ const Navbar = () => {
               About
             </Link>
             <Link
-              to="/Furniro/contact"
+              to="/contact"
               className={`${
-                isActive("/Furniro/contact")
+                isActive("/contact")
                   ? "text-black border-b-2 border-yellow-500"
                   : "text-gray-700 hover:text-black"
               } font-medium pb-1`}
@@ -80,19 +82,13 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="hidden md:flex space-x-4 items-center">
-            <Link
-              to="/Furniro/profile"
-              className="text-gray-700 hover:text-black"
-            >
+            <Link to="/profile" className="text-gray-700 hover:text-black">
               <FaUser className="h-5 w-5" />
             </Link>
-            <Link
-              to="/Furniro/wishlist"
-              className="text-gray-700 hover:text-black"
-            >
+            <Link to="/wishlist" className="text-gray-700 hover:text-black">
               <FaHeart className="h-5 w-5" />
             </Link>
-            <Link to="/Furniro/cart" className="text-gray-700 hover:text-black">
+            <Link to="/cart" className="text-gray-700 hover:text-black">
               <FaShoppingCart className="h-5 w-5" />
             </Link>
           </div>
