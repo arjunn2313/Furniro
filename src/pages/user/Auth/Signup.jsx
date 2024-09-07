@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaLock, FaPhone } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaUser, FaEnvelope, FaLock, FaPhone } from "react-icons/fa";
+import { createUser } from "../../../api/userApi";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    phone: '',
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -18,19 +19,51 @@ const Signup = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name) newErrors.name = 'Name is required';
-    if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.password) newErrors.password = 'Password is required';
-    if (!formData.phone) newErrors.phone = 'Phone number is required';
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.password) newErrors.password = "Password is required";
+    if (!formData.phone) newErrors.phone = "Phone number is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent page refresh
+
+    // Assuming you have a validate function that checks if form data is correct
     if (validate()) {
-      console.log('Form data submitted:', formData);
-      // Handle form submission logic
+      try {
+        // Log the form data
+        console.log("Form data submitted:", formData);
+
+        // Send the form data to the backend
+        const response = await createUser(formData);
+
+        // Handle success (e.g., show success message, redirect, etc.)
+        console.log("User created successfully:", response);
+        alert("User created successfully!");
+
+        // Optionally, reset the form
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          phone: "",
+          address: {
+            street: "",
+            city: "",
+            state: "",
+            zip: "",
+          },
+        });
+      } catch (error) {
+        // Handle errors (e.g., show error message to user)
+        console.error("Error during user creation:", error.message);
+        alert(`Error creating user: ${error.message}`);
+      }
+    } else {
+      // If validation fails, show error message
+      console.log("Validation failed");
     }
   };
 
@@ -40,7 +73,10 @@ const Signup = () => {
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="name">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="name"
+            >
               Name
             </label>
             <div className="flex items-center border-b border-gray-300">
@@ -55,11 +91,16 @@ const Signup = () => {
                 placeholder="John Doe"
               />
             </div>
-            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+            {errors.name && (
+              <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+            )}
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="email"
+            >
               Email
             </label>
             <div className="flex items-center border-b border-gray-300">
@@ -74,11 +115,16 @@ const Signup = () => {
                 placeholder="johndoe@example.com"
               />
             </div>
-            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+            )}
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="password"
+            >
               Password
             </label>
             <div className="flex items-center border-b border-gray-300">
@@ -93,11 +139,16 @@ const Signup = () => {
                 placeholder="••••••••"
               />
             </div>
-            {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+            {errors.password && (
+              <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+            )}
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="phone">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="phone"
+            >
               Phone
             </label>
             <div className="flex items-center border-b border-gray-300">
@@ -112,7 +163,9 @@ const Signup = () => {
                 placeholder="123-456-7890"
               />
             </div>
-            {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+            {errors.phone && (
+              <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+            )}
           </div>
 
           <button
